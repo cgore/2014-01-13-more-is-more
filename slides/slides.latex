@@ -119,13 +119,14 @@
 
 \begin{verbatim}
 class MoreWords
-  File.read("/var/dictionary").split.each do |word|
+  File.read("/usr/share/dict/american-english")
+  .split.each do |word|
+    fn = word.gsub(/[^a-zA-Z]+/, "").downcase
     class_eval %{
-      def more_#{word.downcase}
+      def more_#{fn}
         puts "MORE #{word.upcase}!!!"
       end
-
-      def even_more_#{word.downcase}
+      def even_more_#{fn}
         puts "EVEN MORE #{word.upcase}!!!"
       end
     }
